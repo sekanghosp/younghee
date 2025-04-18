@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>세강병원</title>
+    
+    <!-- 기본 메타 태그 -->
+    <meta name="description" content="의료법인 일민의료재단 세강병원">
+    
+    <!-- Open Graph / 소셜 미디어 공유용 메타 태그 -->
+    <meta property="og:title" content="세강병원">
+    <meta property="og:site_name" content="세강병원">
+    <meta property="og:description" content="의료법인 일민의료재단&#10;세강병원">
+    <meta property="og:image" content="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EB%A9%94%EC%9D%B8%EC%82%AC%EC%A7%84.jpg-dnFSy4gwshMAtZXiPZNf29Iykp3dsG.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="http://www.skhospital.co.kr">
+    <meta property="og:type" content="website">
+    
+    <!-- 카카오톡 전용 메타 태그 -->
+    <meta property="al:ios:url" content="http://www.skhospital.co.kr">
+    <meta property="al:android:url" content="http://www.skhospital.co.kr">
+    <meta property="al:web:url" content="http://www.skhospital.co.kr">
+    
+    <!-- Twitter Card 메타 태그 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="세강병원">
+    <meta name="twitter:description" content="의료법인 일민의료재단&#10;세강병원">
+    <meta name="twitter:image" content="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EB%A9%94%EC%9D%B8%EC%82%AC%EC%A7%84.jpg-dnFSy4gwshMAtZXiPZNf29Iykp3dsG.jpeg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --app-height: 100%;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            height: 100%;
+            height: var(--app-height);
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            touch-action: none;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+        
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .slider-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .slider.no-transition {
+            transition: none;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .slide img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: center;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 58, 112, 0.5);
+            cursor: pointer;
+        }
+        
+        .slider-dot.active {
+            background-color: #003a70;
+        }
+        
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background-color: rgba(0, 58, 112, 0.7);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 10;
+        }
+        
+        .slider-arrow.left {
+            left: 10px;
+        }
+        
+        .slider-arrow.right {
+            right: 10px;
+        }
+        
+        footer {
+            background-color: #003a70;
+            color: white;
+            padding: 12px 15px;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .footer-info {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .footer-address {
+            margin-bottom: 8px;
+        }
+        
+        .footer-contact {
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-contact .contact-name {
+            font-size: 15px;
+            color: #FFB347;
+        }
+
+        .footer-phone {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-phone a {
+            font-size: 16px;
+            color: #FFB347 !important;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .youtube-icon {
+            color: #FF0000;
+        }
+        
+        @media (max-width: 768px) {
+            footer {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+            
+            .footer-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+            
+            .footer-links a {
+                font-size: 12px;
+            }
+            
+            .slider-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            footer {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+            
+            .footer-links a {
+                font-size: 11px;
+            }
+            
+            .footer-info, .footer-address, .footer-contact {
+                margin-bottom: 3px;
+            }
+            
+            .slider-nav {
+                bottom: 8px;
+            }
+            
+            .slider-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+        }
+        
+        /* 아이폰 SE와 같은 작은 화면에 대한 추가 최적화 */
+        @media (max-height: 667px) {
+            .footer-info, .footer-address, .footer-contact, .footer-links {
+                margin-bottom: 2px;
+            }
+            
+            footer {
+                padding: 6px 8px;
+            }
+            
+            .slider-nav {
+                bottom: 6px;
+            }
+            
+            .slider-dot {
+                width: 6px;
+                height: 6px;
+                margin: 0 2px;
+            }
+        }
+        
+        /* 가로 모드 최적화 */
+        @media (orientation: landscape) and (max-height: 500px) {
+            footer {
+                padding: 5px 8px;
+                font-size: 10px;
+            }
+            
+            .footer-info, .footer-address, .footer-contact {
+                margin-bottom: 1px;
+            }
+            
+            .footer-links {
+                margin-top: 1px;
+            }
+            
+            .footer-links a {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="slider-container">
+            <div class="slider">
+                <!-- 마지막 슬라이드의 복제본 (무한 슬라이드를 위해) -->
+                <div class="slide clone">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%844.jpg-1699kQpqiDze8WOqJ0f4gAdSdXPrIz.jpeg" alt="세강병원 이미지 4 (복제)">
+                </div>
+                
+                <!-- 원본 슬라이드 -->
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%841.jpg-UYRz37nBx4x7f5rVd4GheH7oTeDXM9.jpeg" alt="세강병원 이미지 1">
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%842.jpg-kcdKgWoLKBRxb1i5EAvX8NrRRg4zX3.jpeg" alt="세강병원 이미지 2">
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%843.jpg-tRT0DyU9uwrCt3qu4SWPCR0HnIazRW.jpeg" alt="세강병원 이미지 3">
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%844.jpg-1699kQpqiDze8WOqJ0f4gAdSdXPrIz.jpeg" alt="세강병원 이미지 4">
+                </div>
+                
+                <!-- 첫 번째 슬라이드의 복제본 (무한 슬라이드를 위해) -->
+                <div class="slide clone">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%EC%82%AC%EC%A7%841.jpg-UYRz37nBx4x7f5rVd4GheH7oTeDXM9.jpeg" alt="세강병원 이미지 1 (복제)">
+                </div>
+            </div>
+            
+            <div class="slider-nav">
+                <div class="slider-dot active" data-index="0"></div>
+                <div class="slider-dot" data-index="1"></div>
+                <div class="slider-dot" data-index="2"></div>
+                <div class="slider-dot" data-index="3"></div>
+            </div>
+            
+            <div class="slider-arrow left">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="slider-arrow right">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-info">의료법인 일민의료재단 세강병원</div>
+            <div class="footer-address">
+                주소: 대구 달서구 구마로 220 
+                <a href="https://maps.app.goo.gl/wtV4UGcbyr5GzxuJ9" target="_blank" style="color: white;">
+                    <i class="fas fa-map-marker-alt"></i>
+                </a>
+            </div>
+            <div class="footer-contact">
+                <div class="contact-name">대외협력 과장 강영희</div>
+                <div class="footer-phone">
+                    <a href="tel:010-9073-3128" style="color: #FFB347; text-decoration: none;">
+                        <i class="fas fa-phone"></i> 010-3337-7902
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="http://www.skhospital.co.kr" target="_blank"><i class="fas fa-home"></i> 홈페이지</a>
+                <a href="https://www.youtube.com/@SEKANG_HOSPITAL" target="_blank">
+                    <i class="fab fa-youtube youtube-icon"></i> 세강병원 유튜브
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const leftArrow = document.querySelector('.slider-arrow.left');
+            const rightArrow = document.querySelector('.slider-arrow.right');
+            
+            // 실제 슬라이드 개수 (복제본 제외)
+            const realSlideCount = dots.length;
+            // 전체 슬라이드 개수 (복제본 포함)
+            const totalSlideCount = slides.length;
+            
+            // 초기 위치 설정 (첫 번째 실제 슬라이드로)
+            let currentIndex = 1; // 첫 번째 슬라이드 (복제본 다음)
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // 모바일 브라우저에서 100vh 문제 해결
+            function setAppHeight() {
+                const doc = document.documentElement;
+                doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+                
+                // 레이아웃 최적화
+                optimizeLayout();
+            }
+            
+            // 레이아웃 최적화 함수
+            function optimizeLayout() {
+                const mainContainer = document.querySelector('.main-container');
+                const sliderContainer = document.querySelector('.slider-container');
+                const footer = document.querySelector('footer');
+                
+                // 푸터 높이 계산
+                const footerHeight = footer.offsetHeight;
+                
+                // 슬라이더 컨테이너 높이 조정
+                sliderContainer.style.height = `calc(100% - ${footerHeight}px)`;
+                
+                // 이미지 크기 최적화
+                const images = document.querySelectorAll('.slide img');
+                const isLandscape = window.innerWidth > window.innerHeight;
+                
+                images.forEach(img => {
+                    // 이미지 크기를 화면에 맞게 조정
+                    if (isLandscape) {
+                        // 가로 모드
+                        img.style.maxHeight = '90%';
+                        img.style.maxWidth = '90%';
+                    } else {
+                        // 세로 모드
+                        img.style.maxHeight = '90%';
+                        img.style.maxWidth = '90%';
+                    }
+                });
+            }
+            
+            // 초기 로드 및 화면 크기 변경 시 높이 조정
+            window.addEventListener('resize', setAppHeight);
+            window.addEventListener('orientationchange', function() {
+                // 방향 전환 시 약간의 지연 후 레이아웃 최적화 (iOS에서 더 안정적)
+                setTimeout(setAppHeight, 300);
+            });
+            setAppHeight();
+            
+            // Initialize touch events
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isTransitioning = false;
+            
+            function updateActiveDot() {
+                // 실제 슬라이드 인덱스 계산 (복제본 제외)
+                const realIndex = currentIndex > realSlideCount ? 0 : (currentIndex <= 0 ? realSlideCount - 1 : currentIndex - 1);
+                
+                // 활성 도트 업데이트
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === realIndex);
+                });
+            }
+            
+            function goToSlide(index, withTransition = true) {
+                if (isTransitioning) return;
+                
+                // 트랜지션 설정
+                if (!withTransition) {
+                    slider.classList.add('no-transition');
+                } else {
+                    slider.classList.remove('no-transition');
+                    isTransitioning = true;
+                }
+                
+                currentIndex = index;
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // 활성 도트 업데이트
+                updateActiveDot();
+                
+                // 트랜지션 완료 후 처리
+                if (withTransition) {
+                    setTimeout(() => {
+                        // 마지막 슬라이드 복제본에서 첫 번째 실제 슬라이드로 이동
+                        if (currentIndex >= totalSlideCount - 1) {
+                            slider.classList.add('no-transition');
+                            currentIndex = 1;
+                            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                            setTimeout(() => {
+                                slider.classList.remove('no-transition');
+                            }, 50);
+                        }
+                        
+                        // 첫 번째 슬라이드 복제본에서 마지막 실제 슬라이드로 이동
+                        if (currentIndex <= 0) {
+                            slider.classList.add('no-transition');
+                            currentIndex = realSlideCount;
+                            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                            setTimeout(() => {
+                                slider.classList.remove('no-transition');
+                            }, 50);
+                        }
+                        
+                        isTransitioning = false;
+                    }, 500); // 트랜지션 시간과 일치
+                }
+            }
+            
+            // 트랜지션 종료 이벤트 리스너
+            slider.addEventListener('transitionend', function() {
+                isTransitioning = false;
+            });
+            
+            // Event listeners for arrows
+            leftArrow.addEventListener('click', () => {
+                if (isTransitioning) return;
+                goToSlide(currentIndex - 1);
+                resetAutoSlide();
+            });
+            
+            rightArrow.addEventListener('click', () => {
+                if (isTransitioning) return;
+                goToSlide(currentIndex + 1);
+                resetAutoSlide();
+            });
+            
+            // Event listeners for dots
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    if (isTransitioning) return;
+                    // 실제 슬라이드 인덱스에 1을 더해 복제본을 고려
+                    goToSlide(i + 1);
+                    resetAutoSlide();
+                });
+            });
+            
+            // Touch events for swipe
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            slider.addEventListener('touchend', (e) => {
+                if (isTransitioning) return;
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const threshold = 50; // Minimum distance for swipe
+                if (touchEndX < touchStartX - threshold) {
+                    // Swipe left (다음 슬라이드로)
+                    goToSlide(currentIndex + 1);
+                } else if (touchEndX > touchStartX + threshold) {
+                    // Swipe right (이전 슬라이드로)
+                    goToSlide(currentIndex - 1);
+                }
+                
+                // 자동 슬라이드 재설정
+                resetAutoSlide();
+            }
+            
+            // 자동 슬라이드 설정
+            let slideInterval = setInterval(() => {
+                // 마지막 실제 슬라이드에 도달하면 자동 슬라이드 중지
+                if (currentIndex < realSlideCount) {
+                    goToSlide(currentIndex + 1);
+                } else {
+                    // 마지막 슬라이드에서 자동 슬라이드 중지
+                    clearInterval(slideInterval);
+                    slideInterval = null;
+                }
+            }, 5000);
+            
+            // 자동 슬라이드 재설정 함수
+            function resetAutoSlide() {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                }
+                
+                // 마지막 실제 슬라이드에서는 자동 슬라이드를 설정하지 않음
+                const realIndex = currentIndex > realSlideCount ? 0 : (currentIndex <= 0 ? realSlideCount - 1 : currentIndex - 1);
+                
+                if (realIndex < realSlideCount - 1) {
+                    slideInterval = setInterval(() => {
+                        const realIndex = currentIndex > realSlideCount ? 0 : (currentIndex <= 0 ? realSlideCount - 1 : currentIndex - 1);
+                        
+                        if (realIndex < realSlideCount - 1) {
+                            goToSlide(currentIndex + 1);
+                        } else {
+                            // 마지막 슬라이드에서 자동 슬라이드 중지
+                            clearInterval(slideInterval);
+                            slideInterval = null;
+                        }
+                    }, 5000);
+                }
+            }
+            
+            // 사용자 상호작용 시 자동 슬라이드 일시 중지
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('touchstart', () => {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                    slideInterval = null;
+                }
+            });
+            
+            // 사용자 상호작용 종료 시 자동 슬라이드 재개
+            sliderContainer.addEventListener('touchend', () => {
+                // 마지막 실제 슬라이드가 아닌 경우에만 자동 슬라이드 재개
+                const realIndex = currentIndex > realSlideCount ? 0 : (currentIndex <= 0 ? realSlideCount - 1 : currentIndex - 1);
+                
+                if (realIndex < realSlideCount - 1) {
+                    slideInterval = setInterval(() => {
+                        const realIndex = currentIndex > realSlideCount ? 0 : (currentIndex <= 0 ? realSlideCount - 1 : currentIndex - 1);
+                        
+                        if (realIndex < realSlideCount - 1) {
+                            goToSlide(currentIndex + 1);
+                        } else {
+                            // 마지막 슬라이드에서 자동 슬라이드 중지
+                            clearInterval(slideInterval);
+                            slideInterval = null;
+                        }
+                    }, 5000);
+                }
+            });
+            
+            // 모바일 브라우저에서 스크롤 방지
+            document.body.addEventListener('touchmove', function(e) {
+                if (e.target.closest('.slider-container')) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            // 모바일 브라우저에서 확대/축소 방지
+            document.addEventListener('gesturestart', function(e) {
+                e.preventDefault();
+            });
+            
+            // 이미지 로드 완료 후 최적화
+            window.addEventListener('load', function() {
+                setAppHeight();
+                optimizeLayout();
+            });
+            
+            // 키보드 이벤트 처리
+            document.addEventListener('keydown', function(e) {
+                if (isTransitioning) return;
+                
+                if (e.key === 'ArrowLeft') {
+                    goToSlide(currentIndex - 1);
+                    resetAutoSlide();
+                } else if (e.key === 'ArrowRight') {
+                    goToSlide(currentIndex + 1);
+                    resetAutoSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
